@@ -12,8 +12,8 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
-import abo.ABO;
-import abo.gui.ABOGuiIds;
+import aic2o.AIC2O;
+import aic2o.gui.AIC2OGuiIds;
 import buildcraft.api.tools.IToolWrench;
 import buildcraft.core.IItemPipe;
 import buildcraft.core.liquids.LiquidUtils;
@@ -104,7 +104,7 @@ public class BlockPetrochemicalGenerator extends BlockEngine {
 
 			if (tile.engine instanceof EnginePetrochemical) {
 				if (!world.isRemote) {
-					player.openGui(ABO.instance, ABOGuiIds.ENGINE_PETROCHEMICAL, world, i, j, k);
+					player.openGui(AIC2O.instance, AIC2OGuiIds.ENGINE_PETROCHEMICAL, world, i, j, k);
 				}
 				return true;
 			}

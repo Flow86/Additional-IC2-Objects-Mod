@@ -19,10 +19,10 @@ import java.util.logging.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Property;
-import abo.proxy.ABOProxy;
 import aic2o.energy.BlockPetrochemicalGenerator;
 import aic2o.energy.ItemPetrochemicalGenerator;
 import aic2o.gui.AIC2OGuiHandler;
+import aic2o.proxy.AIC2OProxy;
 import buildcraft.core.proxy.CoreProxy;
 import buildcraft.core.utils.Localization;
 import cpw.mods.fml.common.FMLLog;
@@ -104,8 +104,8 @@ public class AIC2O {
 
 		loadRecipes();
 
-		ABOProxy.proxy.registerBlockRenderers();
-		ABOProxy.proxy.registerTileEntities();
+		AIC2OProxy.proxy.registerBlockRenderers();
+		AIC2OProxy.proxy.registerTileEntities();
 
 		NetworkRegistry.instance().registerGuiHandler(instance, new AIC2OGuiHandler());
 	}
