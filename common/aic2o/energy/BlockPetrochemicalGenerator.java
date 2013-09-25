@@ -94,12 +94,6 @@ public class BlockPetrochemicalGenerator extends BlockEngine {
 				if (player.getCurrentEquippedItem().getItem() instanceof IItemPipe) {
 					return false;
 				}
-				if (tile.engine instanceof EnginePetrochemical) {
-					ItemStack current = player.getCurrentEquippedItem();
-					if (current != null && current.itemID != Item.bucketEmpty.itemID) {
-						return true;
-					}
-				}
 			}
 
 			if (tile.engine instanceof EnginePetrochemical) {
