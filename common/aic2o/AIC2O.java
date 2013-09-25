@@ -1,5 +1,5 @@
 /** 
- * Copyright (C) 2011-2013 Flow86
+ * Copyright (C) 2013 Flow86
  * 
  * AdditionalIC2Objects is open-source.
  *
@@ -22,6 +22,7 @@ import net.minecraftforge.common.Property;
 import aic2o.energy.BlockPetrochemicalGenerator;
 import aic2o.energy.ItemPetrochemicalGenerator;
 import aic2o.gui.AIC2OGuiHandler;
+import aic2o.network.AIC2OPacketHandler;
 import aic2o.proxy.AIC2OProxy;
 import buildcraft.core.proxy.CoreProxy;
 import buildcraft.core.utils.Localization;
@@ -32,6 +33,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -40,6 +42,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * 
  */
 @Mod(modid = "Additional-IC2-Objects", name = "Additional-IC2-Objects", version = "@AIC2O_VERSION@", dependencies = "required-after:Forge@7.7.2.682,);required-after:BuildCraft|Energy;required-after:IC2")
+@NetworkMod(channels = { "AIC2O" }, packetHandler = AIC2OPacketHandler.class)
 public class AIC2O {
 	public static final String VERSION = "@AIC2O_VERSION@";
 
@@ -75,7 +78,8 @@ public class AIC2O {
 	public void preInitialize(FMLPreInitializationEvent evt) {
 
 		aic2oLog.setParent(FMLLog.getLogger());
-		aic2oLog.info("Starting Additional-IC2-Objects #@BUILD_NUMBER@ " + VERSION + " (Built for Minecraft @MINECRAFT_VERSION@ with Buildcraft @BUILDCRAFT_VERSION@ and Forge @FORGE_VERSION@");
+		aic2oLog.info("Starting Additional-IC2-Objects #@BUILD_NUMBER@ " + VERSION
+				+ " (Built for Minecraft @MINECRAFT_VERSION@ with Buildcraft @BUILDCRAFT_VERSION@ and Forge @FORGE_VERSION@");
 		aic2oLog.info("Copyright (c) Flow86, 2011-2013");
 
 		aic2oConfiguration = new AIC2OConfiguration(new File(evt.getModConfigurationDirectory(), "aic2o/main.conf"));

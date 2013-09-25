@@ -1,5 +1,5 @@
 /** 
- * Copyright (C) 2011-2013 Flow86
+ * Copyright (C) 2013 Flow86
  * 
  * AdditionalIC2Objects is open-source.
  *
