@@ -22,14 +22,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
 import aic2o.AIC2O;
 import aic2o.gui.AIC2OGuiIds;
 import buildcraft.api.tools.IToolWrench;
 import buildcraft.core.IItemPipe;
-import buildcraft.core.liquids.LiquidUtils;
-import buildcraft.core.proxy.CoreProxy;
 import buildcraft.energy.BlockEngine;
 import buildcraft.energy.TileEngine;
 import cpw.mods.fml.relauncher.Side;
@@ -101,15 +97,7 @@ public class BlockPetrochemicalGenerator extends BlockEngine {
 				if (tile.engine instanceof EnginePetrochemical) {
 					ItemStack current = player.getCurrentEquippedItem();
 					if (current != null && current.itemID != Item.bucketEmpty.itemID) {
-						if (CoreProxy.proxy.isSimulating(world)) {
-							if (LiquidUtils.handleRightClick(tile, ForgeDirection.getOrientation(side), player, true, false)) {
-								return true;
-							}
-						} else {
-							if (LiquidContainerRegistry.isContainer(current)) {
-								return true;
-							}
-						}
+						return true;
 					}
 				}
 			}
