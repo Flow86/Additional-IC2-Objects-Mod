@@ -34,7 +34,7 @@ import buildcraft.energy.TileEngine;
 
 public class TilePetrochemicalGenerator extends TileEngine implements IEnergySource {
 
-	public static final int MJ2EU = 4 / 1;
+	public static final int MJ2EU = 3 / 1;
 
 	private boolean addedToEnergyNet = false;
 
@@ -164,6 +164,9 @@ public class TilePetrochemicalGenerator extends TileEngine implements IEnergySou
 			setActive(false);
 		}
 
+		int flowRate = 200;
+		int transfered = 0;
+
 		// now drain liquid from adjacent tanks
 		for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
 			Position pos = new Position(xCoord, yCoord, zCoord, direction);
@@ -173,16 +176,18 @@ public class TilePetrochemicalGenerator extends TileEngine implements IEnergySou
 			if (tile != null && tile instanceof ITankContainer) {
 				ITankContainer container = (ITankContainer) tile;
 
-				int flowRate = 200;
-
-				LiquidStack extracted = container.drain(pos.orientation.getOpposite(), flowRate, false);
+				LiquidStack extracted = container.drain(pos.orientation.getOpposite(), flowRate - transfered, false);
 
 				int inserted = 0;
 				if (extracted != null) {
 					inserted = fill(pos.orientation, extracted, true);
 
 					container.drain(pos.orientation.getOpposite(), inserted, true);
+					transfered += inserted;
 				}
+
+				if (transfered >= flowRate)
+					break;
 			}
 		}
 
